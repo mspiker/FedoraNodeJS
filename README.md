@@ -1,15 +1,6 @@
 # FedoraNodeJS Project
 Setting up a Dev environment in Fedora to develop in NodeJs. These are my notes to getthing that environment configured.  
-## Installing NodeJS
-~~~
-curl -fsSL https://rpm.nodesource.com/setup_22.x | sudo bash -
-sudo dnf install -y node,js
-~~~
-To confirm installation was a success, open the terminal in VS Code:
-~~~
-node -v
-npm -v
-~~~
+[NodeJS](Documentation/NodeJS.md)
 ## Installing git and Configure SSH with GitHub
 ~~~
 sudo dnf install git -y
