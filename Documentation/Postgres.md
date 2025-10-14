@@ -37,15 +37,15 @@ local        all         all            md5
 ```
 Save the file and exit.  
 To apply the changes you will restart Postgres to apply the changes.
-```
+```bash
 sudo systemctl restart postgresql
 ```
 ## Install PostgresSQL Node.js Client - pg
-```
+```bash
 npm install pg
 ```
 Once the pg library is installed, you can set up a connection to the PostgreSQL database:
-```
+```js
 const { Client } = require('pg');
 
 const client = new Client({
