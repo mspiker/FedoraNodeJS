@@ -17,10 +17,9 @@ sudo -u postgres psql
 ```
 Now, lets create a user and a database.
 ```
-CREATE ROLE yourusername WITH LOGIN PASSWORD 'yourpassword';
-ALTER ROLE yourusername CREATEDB;
-CREATE DATABASE yourdatabase;
-GRANT ALL PRIVILEGES ON DATABASE yourdatabase TO yourusername;
+CREATE USER app_user WITH PASSWORD 'password';
+CREATE DATABASE app_db OWNER app_user;
+GRANT ALL PRIVELEGES ON DATABASE app_db TO app_user;
 \q
 ```
 Next, we will edit the configuration file to allow password authentication for local connections by editing the pg_hba.conf file.
@@ -29,11 +28,13 @@ sudo nano /var/lib/pgsql/data/pg_hba.conf
 ```
 Find the line that looks like this:
 ```
-local        all         all            peer
+local        all         all    127.0.0.1/32       peer
+local        all         all    ::1/128            peer
 ```
 And change it to this:
 ```
-local        all         all            md5
+local        all         all    127.0.0.1/32       md5
+local        all         all    ::1/128            md5
 ```
 Save the file and exit.  
 To apply the changes you will restart Postgres to apply the changes.
